@@ -1,4 +1,4 @@
-const publicUrl = window.config.PUBLIC_URL;
+const publicUrl = window.config?.PUBLIC_URL || '';
 
 document.getElementById('repoForm').addEventListener('submit', async (event) => {
     event.preventDefault();
@@ -102,4 +102,12 @@ document.addEventListener('DOMContentLoaded', () => {
             icon.style.display = 'none';
         });
     });
+});
+
+console.log("PUBLIC_URL:", publicUrl);
+
+const response = await fetch(imageUrl, {
+    headers: {
+        "Bypass-Tunnel-Reminder": "true"
+    }
 });

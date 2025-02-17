@@ -41,11 +41,11 @@ app.use('/css', express.static(path.join(__dirname, 'static/css')));
 
 app.use('/js', express.static(path.join(__dirname, 'static/js')));
 
-app.get('/', (req, res) => {
+app.get('/', (_req, res) => {
     res.sendFile(path.join(__dirname, 'static/index.html'));
 });
 
-app.get('/js/config.js', (req, res) => {
+app.get('/js/config.js', (_req, res) => {
     res.set('Content-Type', 'application/javascript');
     res.send(`
         window.config = {
@@ -53,6 +53,11 @@ app.get('/js/config.js', (req, res) => {
         };
     `);
 });
+
+import cors from 'cors'; // Add this line at the top
+
+app.use(cors()); // Enable CORS for all routes
+
 
 app.get('/repo/:user/:repo', checkCache, async (req, res) => {
     const { user, repo } = req.params;
