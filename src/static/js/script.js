@@ -111,3 +111,15 @@ const response = await fetch(imageUrl, {
         "Bypass-Tunnel-Reminder": "true"
     }
 });
+
+const express = require('express');
+const app = express();
+const port = process.env.PORT || 8080;
+
+app.get('/', (req, res) => {
+  res.send('Hello from Cloud Run!');
+});
+
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
+});
